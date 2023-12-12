@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Leave Management System</title>
 		<link rel="stylesheet" href="styles.css"/>
 		<script src="https://kit.fontawesome.com/27fc76bc69.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
+		
 		<header>
 			<p>Leave Management System</p>
-
+			<div class="user-actions">
+				<div class="dropdown">
+					<button onclick="myFunction()" class="dropdown-toggle" id="userDropdown">User</button>
+					<div class="dropdown-content" id="dropdownContent">
+						<a href="#">Pending Leave Requests</a>
+						<a href="#">Leave Request History</a>
+						<a href="#" class="logout-button">Log Out</a>
+					</div>
+				</div>
+			</div>
 		</header>
-		<div class="container"></div>
-		<footer></footer>
+		<div class="container">
+			<section class="leave-request-form">
+				<h2>Leave Request Form</h2>
+				<form action="#" method="POST">
+					<label for="employee-name">Employee Name:</label>
+					<input 
+					  type="text"
+					  id="employee-name"
+					  name="employee-name"
+					  required />
+					<label for="leave-type">Leave Type:</label>
+					<select id="leave-type" name="leave-type" required>
+						<option value="" selected disabled hidden>Choose here</option>
+						<option value="sick">Sick Leave</option>
+						<option value="maternity">Maternity Leave</option>
+						<option value="paternity">Paternity Leave</option>
+						<option value="holiday">Annual Leave</option>
+					</select>
+
+					<label for="start-date">Start Date:</label>
+					<input 
+					  type="date" 
+					  id="start-date" 
+					  name="start-date" 
+					  required />
+					
+					<label for="end-date">End Date:</label>
+					<input 
+					  type="date"
+					  id="end-date"
+					  name="end-date"
+					  required/>
+
+					<label for="reason">Reason:</label>
+					<textarea id="reason" name="reason" required></textarea>
+					<button type="submit">Submit Request</button>
+				</form>
+			</section>
+
+			<section class="leave-history">
+				<h2>Leave History</h2>
+				<!-- Want to include a table that lists previously requested leave and currently pending leave-->
+					<table>
+						<thead>
+
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+			</section>
+		</div>
+		<script src="script.js"></script>
+		<footer><p>Copyright 2023. All rights reserved</p></footer>
 	</body>
 </html>
