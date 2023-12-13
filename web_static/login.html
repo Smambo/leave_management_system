@@ -11,15 +11,15 @@
         <div class="container">
             <div class="form-box">
                 <h1 id="title">Sign in</h1>
-                <form>
+                <form id="signInForm">
                     <div class="input-group">
                         <div class="input-field">
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" placeholder="Username">
+                            <input type="text" id="username" placeholder="Username" required>
                         </div>
                         <div class="input-field">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Password">
+                            <input type="password" id="password" placeholder="Password" required>
                         </div>
                         <p>Forgot password? <a href="#">Click here</a></p>
                     </div>
@@ -28,6 +28,41 @@
                     </div>
                 </form>
             </div>
-        </div>   
+        </div>
+        <script>
+            document.getElementById('signinBtn').addEventListener('click', function() {            
+
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+
+                // data to be sent to the server
+                var data = {
+                    username: username,
+                    password: password
+                };
+
+                // send POST request to server
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return (response.json());
+                    } else {
+                        throw new Error('Credentials invalid. Please try again.')
+                    }
+                })
+                .then(responseData => {
+                    window.location.href = 'index.html';
+                })
+                .catch(error => {
+                    console.error('Error:', error) //for network/server issues
+                });
+            });
+        </script>   
     </body>
 </html>
